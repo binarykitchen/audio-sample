@@ -1,0 +1,39 @@
+{
+  "name": "AudioSample",
+  "version": "1.0.0",
+  "description": "A wrapper to turn webcam audio samples into buffers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/test.js"
+  },
+  "keywords": [
+    "audio",
+    "webcam",
+    "float32array",
+    "buffer"
+  ],
+  "author": {
+    "name": "Michael Heuberger",
+    "email": "michael.heuberger@binarykitchen.com"
+  },
+  "readmeFilename": "README.md",
+  "engines": {
+    "iojs": ">=2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binarykitchen/audio-sample"
+  },
+  "homepage": "https://github.com/binarykitchen/audio-sample",
+  "bugs": {
+    "url": "https://github.com/binarykitchen/audio-sample/issues"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "typedarray-to-buffer": "3.0.4",
+    "validate.io-float32array": "1.0.0"
+  },
+  "devDependencies": {
+    "tape": "4.2.0"
+  }
+}
