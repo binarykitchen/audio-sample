@@ -123,8 +123,8 @@ test('AudioSample', function(t) {
             ttt.equal(buffer[11],127)
         })
 
-        tt.test('test with random, huge arrays', function(ttt) {
-            // todo
-        })
+        // todo
+        // tt.test('test with random, huge arrays', function(ttt) {
+        // })
     })
 })

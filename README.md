@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/binarykitchen/audio-sample.svg?branch=master)](https://travis-ci.org/binarykitchen/audio-sample)
 
-# AudioSample
+# audio-sample
 
 That's an audio sample class, accepting a Float32Array in the constructor with one public function. It turns that Float32 into a buffer with the most fastest algorithm.
 
@@ -17,4 +17,16 @@ npm i -S audio-sample
 ```
 
 ## How to use
-...
+
+```
+// just an example, this array can come from the first audio channel of a webcam (getUserMedia)
+var arrayOfFloats = e.inputBuffer.getChannelData(0)
+
+// create a single audio sample instance
+var audioSample = new AudioSample(new Float32Array(arrayOfFloats))
+
+// and now, convert it into a buffer super-fast
+var buffer = audioSample.toBuffer()
+
+// then you can send this buffer easily over to the server and do some processing there
+```

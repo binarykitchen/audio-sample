@@ -1,5 +1,5 @@
 {
-  "name": "AudioSample",
+  "name": "audio-sample",
   "version": "1.0.0",
   "description": "A wrapper to turn webcam audio samples into buffers.",
   "main": "index.js",
