@@ -1,6 +1,6 @@
 {
   "name": "audio-sample",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A wrapper to turn webcam audio samples into buffers.",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "typedarray-to-buffer": "3.1.4",
+    "typedarray-to-buffer": "3.1.5",
     "validate.io-float32array": "1.0.0"
   },
   "devDependencies": {
