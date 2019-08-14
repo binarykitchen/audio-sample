@@ -1,0 +1,2 @@
+!function(r,e){"object"==typeof exports&&"undefined"!=typeof module?e():"function"==typeof define&&define.amd?define(e):e()}(0,function(){var r=require("typedarray-to-buffer"),e=require("validate.io-float32array");module.exports=function(t){if(!t)throw new Error("A Float32Array parameter is missing.");if(!e(t))throw new Error("The parameter is not a Float32Array.");this.toBuffer=function(){var e,o=t.length,n=new Int16Array(o);for(e=0;e<o;e++)n[e]=32767*Math.min(1,t[e]);return r(n)}}});
+//# sourceMappingURL=audio-sample.umd.js.map

@@ -1,5 +1,5 @@
-var toBuffer = require('typedarray-to-buffer')
-var isFloat32Array = require('validate.io-float32array')
+const toBuffer = require('typedarray-to-buffer')
+const isFloat32Array = require('validate.io-float32array')
 
 module.exports = function (float32Array) {
   if (!float32Array) {
@@ -11,8 +11,8 @@ module.exports = function (float32Array) {
   }
 
   this.toBuffer = function () {
-    var l = float32Array.length
-    var arr = new Int16Array(l)
+    const l = float32Array.length
+    const arr = new Int16Array(l)
     var i
 
     for (i = 0; i < l; i++) {
