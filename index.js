@@ -13,7 +13,7 @@ module.exports = function (float32Array) {
   this.toBuffer = function () {
     const l = float32Array.length
     const arr = new Int16Array(l)
-    var i
+    let i
 
     for (i = 0; i < l; i++) {
       arr[i] = Math.min(1, float32Array[i]) * 0x7FFF
