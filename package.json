@@ -2,14 +2,24 @@
   "name": "audio-sample",
   "version": "3.0.1",
   "description": "A wrapper to turn webcam audio samples into buffers.",
-  "source": "index.js",
-  "main": "dist/audio-sample.js",
-  "module": "dist/audio-sample.mjs",
+  "type": "module",
+  "source": "src/index.ts",
+  "exports": {
+    "types": "./dist/src/index.d.ts",
+    "require": "./dist/audio-sample.cjs",
+    "default": "./dist/audio-sample.modern.js"
+  },
+  "module": "./dist/audio-sample.esm.js",
+  "main": "./dist/audio-sample.cjs",
+  "unpkg": "./dist/audio-sample.umd.js",
   "scripts": {
-    "lint": "standard index.js",
-    "lint:fix": "standard --fix index.js",
-    "build": "microbundle",
-    "test": "tape test/test.js"
+    "types:check": "tsc --noEmit",
+    "lint": "eslint --color ./src ./test",
+    "lint:fix": "npm --silent run lint -- --fix",
+    "build": "del-cli dist && microbundle src/index.ts",
+    "test": "cross-env NODE_OPTIONS='--import=tsx' tape test/*.ts",
+    "prettier": "prettier --check ./src ./test",
+    "prettier:fix": "prettier --write ./src ./test"
   },
   "keywords": [
     "audio",
@@ -30,18 +40,32 @@
   "bugs": {
     "url": "https://github.com/binarykitchen/audio-sample/issues"
   },
-  "license": "ISC",
+  "license": "MIT",
   "engines": {
-    "node": ">=18.12.1",
-    "npm": ">=8.19.2"
+    "node": "^20.12.2",
+    "npm": "^10.5.0"
   },
+  "prettier": "./prettier.config.js",
   "dependencies": {
-    "typedarray-to-buffer": "4.0.0",
-    "validate.io-float32array": "1.0.0"
+    "typedarray-to-buffer": "4.0.0"
   },
   "devDependencies": {
+    "@tsconfig/node20": "20.1.4",
+    "@tsconfig/strictest": "2.0.5",
+    "@types/tape": "5.6.4",
+    "@types/typedarray-to-buffer": "4.0.4",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "cross-env": "7.0.3",
+    "del-cli": "5.1.0",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-import": "2.29.1",
     "microbundle": "0.15.1",
-    "standard": "17.0.0",
-    "tape": "5.6.3"
+    "prettier": "3.3.3",
+    "tape": "5.8.1",
+    "tsx": "4.16.5",
+    "typescript": "5.5.4"
   }
 }

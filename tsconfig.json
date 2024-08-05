@@ -1,0 +1,9 @@
+{
+  "include": ["src", "test"],
+  "extends": ["@tsconfig/strictest/tsconfig.json", "@tsconfig/node20/tsconfig.json"],
+  "compilerOptions": {
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "lib": ["es2022"]
+  }
+}

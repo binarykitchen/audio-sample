@@ -1,2 +1,0 @@
-const r=require("typedarray-to-buffer"),t=require("validate.io-float32array");module.exports=function(e){if(!e)throw new Error("A Float32Array parameter is missing.");if(!t(e))throw new Error("The parameter is not a Float32Array.");this.toBuffer=function(){const t=e.length,a=new Int16Array(t);let o;for(o=0;o<t;o++)a[o]=32767*Math.min(1,e[o]);return r(a)}};
-//# sourceMappingURL=audio-sample.modern.mjs.map
