@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/binarykitchen/audio-sample.svg?branch=master)](https://travis-ci.org/binarykitchen/audio-sample)
-
 # audio-sample
 
 That's an audio sample class, accepting a Float32Array in the constructor with one public function. It turns that Float32 into a buffer with the most fastest algorithm.
