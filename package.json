@@ -1,6 +1,6 @@
 {
   "name": "audio-sample",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "description": "A wrapper to turn webcam audio samples into buffers.",
   "type": "module",
   "source": "src/index.ts",
@@ -42,17 +42,17 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=20.12.2",
-    "npm": ">=10.5.0"
+    "node": "^22.16.0",
+    "npm": "^10.9.2"
   },
   "prettier": "./prettier.config.cjs",
   "dependencies": {
     "typedarray-to-buffer": "4.0.0"
   },
   "devDependencies": {
-    "@tsconfig/node20": "20.1.4",
+    "@tsconfig/node22": "22.0.2",
     "@tsconfig/strictest": "2.0.5",
-    "@types/tape": "5.6.4",
+    "@types/tape": "5.8.1",
     "@types/typedarray-to-buffer": "4.0.4",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
@@ -61,11 +61,11 @@
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-import-resolver-typescript": "3.6.3",
-    "eslint-plugin-import": "2.30.0",
+    "eslint-plugin-import": "2.32.0",
     "microbundle": "0.15.1",
-    "prettier": "3.3.3",
-    "tape": "5.8.1",
-    "tsx": "4.19.0",
-    "typescript": "5.6.2"
+    "prettier": "3.6.2",
+    "tape": "5.9.0",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3"
   }
 }
