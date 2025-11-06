@@ -34,7 +34,7 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/binarykitchen/audio-sample"
+    "url": "git+https://github.com/binarykitchen/audio-sample.git"
   },
   "homepage": "https://github.com/binarykitchen/audio-sample",
   "bugs": {
