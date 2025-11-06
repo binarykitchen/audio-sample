@@ -40,10 +40,9 @@
   "bugs": {
     "url": "https://github.com/binarykitchen/audio-sample/issues"
   },
-  "license": "MIT",
   "engines": {
-    "node": "^22.16.0",
-    "npm": "^10.9.2"
+    "node": "^24.11.0",
+    "npm": "^11.6.1"
   },
   "prettier": "./prettier.config.cjs",
   "dependencies": {
@@ -51,7 +50,7 @@
   },
   "devDependencies": {
     "@tsconfig/node22": "22.0.2",
-    "@tsconfig/strictest": "2.0.5",
+    "@tsconfig/strictest": "2.0.7",
     "@types/tape": "5.8.1",
     "@types/typedarray-to-buffer": "4.0.4",
     "@typescript-eslint/eslint-plugin": "7.18.0",
@@ -65,7 +64,7 @@
     "microbundle": "0.15.1",
     "prettier": "3.6.2",
     "tape": "5.9.0",
-    "tsx": "4.20.3",
-    "typescript": "5.8.3"
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
   }
 }
