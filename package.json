@@ -1,25 +1,32 @@
 {
   "name": "audio-sample",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "A wrapper to turn webcam audio samples into buffers.",
   "type": "module",
   "source": "src/index.ts",
   "exports": {
-    "types": "./dist/src/index.d.ts",
-    "require": "./dist/audio-sample.cjs",
-    "default": "./dist/audio-sample.modern.js"
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "umd": "./dist/umd/index.js",
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    }
   },
-  "module": "./dist/audio-sample.esm.js",
-  "main": "./dist/audio-sample.cjs",
-  "unpkg": "./dist/audio-sample.umd.js",
+  "main": "./dist/esm/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "types:check": "tsc --noEmit",
-    "lint": "eslint --color ./src ./test",
-    "lint:fix": "npm --silent run lint -- --fix",
-    "build": "del-cli dist && microbundle src/index.ts",
+    "types": "tsc --noEmit",
+    "types:config": "tsc --showConfig",
+    "lint": "eslint --color .",
+    "lint:fix": "eslint --color --fix .",
+    "build": "cross-env NODE_ENV=production rslib build",
     "test": "cross-env NODE_OPTIONS='--import=tsx' tape test/*.ts",
-    "prettier": "prettier --check ./src ./test",
-    "prettier:fix": "prettier --write ./src ./test"
+    "prettier": "prettier --check ./src ./test *.js .ts",
+    "prettier:fix": "prettier --write ./src ./test *.js .ts"
   },
   "keywords": [
     "audio",
@@ -41,30 +48,28 @@
     "url": "https://github.com/binarykitchen/audio-sample/issues"
   },
   "engines": {
-    "node": "^24.11.0",
-    "npm": "^11.6.1"
+    "node": ">=24.18.0",
+    "npm": ">=11.16.0"
   },
-  "prettier": "./prettier.config.cjs",
+  "prettier": "./prettier.config.js",
   "dependencies": {
     "typedarray-to-buffer": "4.0.0"
   },
   "devDependencies": {
-    "@tsconfig/node22": "22.0.2",
-    "@tsconfig/strictest": "2.0.7",
+    "@eslint/js": "10.0.1",
+    "@rsbuild/plugin-node-polyfill": "1.4.6",
+    "@rsdoctor/rspack-plugin": "1.5.18",
+    "@rslib/core": "0.23.2",
+    "@tsconfig/node24": "24.0.4",
+    "@tsconfig/strictest": "2.0.8",
     "@types/tape": "5.8.1",
     "@types/typedarray-to-buffer": "4.0.4",
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
-    "cross-env": "7.0.3",
-    "del-cli": "5.1.0",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-import-resolver-typescript": "3.6.3",
-    "eslint-plugin-import": "2.32.0",
-    "microbundle": "0.15.1",
-    "prettier": "3.6.2",
-    "tape": "5.9.0",
-    "tsx": "4.20.6",
-    "typescript": "5.9.3"
+    "cross-env": "10.1.0",
+    "eslint": "10.6.0",
+    "prettier": "3.9.5",
+    "tape": "5.10.2",
+    "tsx": "4.23.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.63.0"
   }
 }

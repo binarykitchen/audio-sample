@@ -1,10 +1,35 @@
 {
-  "include": ["src", "test"],
-  "extends": ["@tsconfig/strictest/tsconfig.json", "@tsconfig/node22/tsconfig.json"],
+  "include": ["src", "test", "eslint.config.js", "prettier.config.js", "rslib.config.ts"],
+  "extends": ["@tsconfig/strictest/tsconfig.json", "@tsconfig/node24/tsconfig.json"],
   "compilerOptions": {
-    "module": "es2022",
+    "rootDir": ".",
+
+    "module": "esnext",
     "moduleResolution": "bundler",
-    "lib": ["es2022"],
-    "noEmit": false
+
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["node"],
+
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    // This option can help you avoid using certain syntax that cannot be correctly compiled by SWC and Babel, see:
+    // https://rsbuild.dev/guide/basic/typescript#isolatedmodules
+    "isolatedModules": true,
+
+    // Strips all comments from TypeScript files when converting into JavaScript,
+    // you rarely read compiled code so this saves space
+    "removeComments": true,
+
+    "noEmit": true,
+
+    // This to speed up CI and avoid external type issues
+    "skipLibCheck": true,
+
+    // Keep supporting side-effect style imports without declaration files
+    "noUncheckedSideEffectImports": false,
+
+    // So that eslint and prettier written in JS can be included
+    "allowJs": true
   }
 }

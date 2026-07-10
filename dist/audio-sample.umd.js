@@ -1,3 +1,0 @@
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e(require("typedarray-to-buffer")):"function"==typeof define&&define.amd?define(["typedarray-to-buffer"],e):(t||self).audioSample=e(t.typedarrayToBuffer)}(this,function(t){function e(t){return t&&"object"==typeof t&&"default"in t?t:{default:t}}var r=/*#__PURE__*/e(t);/*#__PURE__*/
-return function(){function t(t){this.float32Array=void 0,this.float32Array=t}return t.prototype.toBuffer=function(){var t=new Int16Array(this.float32Array.length);return this.float32Array.forEach(function(e,r){t[r]=32767*Math.min(1,e)}),r.default(t)},t}()});
-//# sourceMappingURL=audio-sample.umd.js.map
