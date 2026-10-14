@@ -59,7 +59,7 @@
     "@eslint/js": "10.0.1",
     "@rsbuild/plugin-node-polyfill": "1.4.6",
     "@rsdoctor/rspack-plugin": "1.6.5",
-    "@rslib/core": "0.23.2",
+    "@rslib/core": "1.0.3",
     "@tsconfig/node24": "24.0.5",
     "@tsconfig/strictest": "2.0.8",
     "@types/tape": "5.8.1",
