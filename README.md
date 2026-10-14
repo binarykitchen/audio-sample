@@ -1,31 +1,76 @@
 # audio-sample
 
-That's an audio sample class, accepting a Float32Array in the constructor with one public function. It turns that Float32 into a buffer with the most fastest algorithm.
-
-This within ~20 code lines only by reusing other useful node modules. It cannot get faster and shorter. If I am wrong, let me know and I'll fix that asap.
-
-This component is very useful for turning raw WebAudio samples, which are in Float32, into a buffer with 16 bit signed integers while respecting endianness.
-
-For inspiration refer to:
-<http://blog.groupbuddies.com/posts/39-tutorial-html-audio-capture-streaming-to-node-js-no-browser-extensions>
+Convert a `Float32Array` of audio samples into a `Buffer` containing signed 16-bit PCM samples. This is useful for sending raw Web Audio samples to a server for further processing.
 
 ## Install
 
 ```bash
-npm i -S audio-sample
+npm install audio-sample
 ```
 
 ## How to use
 
-```js
-// just an example, this array can come from the first audio channel of a webcam (getUserMedia)
-var arrayOfFloats = e.inputBuffer.getChannelData(0);
+```ts
+import AudioSample from "audio-sample";
 
-// create a single audio sample instance
-var audioSample = new AudioSample(new Float32Array(arrayOfFloats));
-
-// and now, convert it into a buffer super-fast
-var buffer = audioSample.toBuffer();
-
-// then you can send this buffer easily over to the server and do some processing there
+const samples = new Float32Array([0.9, 1.08, -0.9, -1.08]);
+const audioSample = new AudioSample(samples);
+const buffer = audioSample.toBuffer();
 ```
+
+The decoded signed samples are `[29490, 32767, -29490, -32767]`.
+
+For a Web Audio `AudioBuffer`, `getChannelData()` already returns a `Float32Array`, so no input copy is required:
+
+```ts
+const samples = audioBuffer.getChannelData(0);
+const buffer = new AudioSample(samples).toBuffer();
+```
+
+## Conversion behavior
+
+- Finite samples are clamped to `[-1, 1]`, multiplied by `32767`, and truncated toward zero when stored as signed 16-bit integers.
+- Both bounds use the existing `32767` scale: `-1` maps to `-32767`, not `-32768`, and `1` maps to `32767`.
+- Each input sample produces exactly two output bytes in the same sample order. Empty input produces an empty buffer.
+- Byte order is unchanged from the host's native `Int16Array` representation, typically little-endian. There is no byte swapping; use the matching byte order when reading the buffer.
+- The output is raw PCM without a file header, sample rate, or channel metadata.
+- Conversion does not modify the source array, apply gain, or normalize loudness. Repeated conversion of unchanged input produces identical bytes.
+- The constructor retains the input array by reference. Changes made by the caller are reflected in subsequent calls to `toBuffer()`.
+
+| Input sample | Signed 16-bit output |
+| ------------ | -------------------- |
+| `0`          | `0`                  |
+| `0.9`        | `29490`              |
+| `-0.9`       | `-29490`             |
+| `1`          | `32767`              |
+| `-1`         | `-32767`             |
+| `1.08`       | `32767`              |
+| `-1.08`      | `-32767`             |
+| `2`          | `32767`              |
+| `-2`         | `-32767`             |
+
+### Non-finite samples
+
+Non-finite inputs retain their legacy conversion results for compatibility:
+
+| Input sample | Signed 16-bit output |
+| ------------ | -------------------- |
+| `NaN`        | `0`                  |
+| `Infinity`   | `32767`              |
+| `-Infinity`  | `0`                  |
+
+These values are not covered by the finite clipping rule. Rejecting them or changing their output would require a separate policy decision.
+
+## Development
+
+Use the Node.js and npm versions specified in [package.json](package.json).
+
+```bash
+npm test
+npm run types
+npm run lint
+npm exec -- prettier --check src test README.md
+npm run build
+```
+
+The Tape tests in [test/test.ts](test/test.ts) import [src/index.ts](src/index.ts) directly through `tsx`, so they exercise source changes rather than generated bundles. The build produces ESM, CommonJS, and UMD bundles.
